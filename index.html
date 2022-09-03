@@ -6,15 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper Klon</title>
+    <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="style.css">
+    <script src="timer.js"></script>
     <script src="script.js"></script>
 </head>
 
 
 <body onload="init()">
-    <div class="main_body">
-        <div class="play_field" id="playField">
+    <div class="main_container">
+        <div class="main_body">
+            <div class="play_field" id="playField">
+            </div>
+
         </div>
+
+        <div class="status">
+            <div class="status_row"><img class="icons" src="images/icons/Flag.png"> <span class="numbers">007</span></div>
+            <div class="status_row"><img class="icons" src="images/icons/Timer.png"><span id="timer" class="numbers">10</span></div>
+        </div>
+    </div>
+
+    <div id="gameOver" class="">
+
     </div>
 </body>
 
