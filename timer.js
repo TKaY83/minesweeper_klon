@@ -1,4 +1,4 @@
-let time = 10;
+let time = 20;
 
 
 function countDown() {
@@ -6,12 +6,23 @@ function countDown() {
         time--;
         document.getElementById('timer').innerHTML = time;
         if (time == 0) {
-            document.getElementById('gameOver').classList.add('game_over');
-            document.getElementById('gameOver').innerHTML = 'GAME OVER'
+            gameOver();
             clearInterval(contDown);
-
         }
     }, 1000);
+}
 
+function resetTimer() {
+    return time = 21;
+}
 
+function gameOver() {
+    setTimeout(() => {
+        document.getElementById('gameOver').classList.add('game_over');
+        document.getElementById('gameOver').innerHTML = 'GAME OVER';
+    }, 200);
+}
+
+function restart() {
+    location.reload();
 }

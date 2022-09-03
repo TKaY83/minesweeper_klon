@@ -1,6 +1,6 @@
 let fields = []; //8x8 10b css:94px
-const width = 8;
-const height = 8;
+const width = 12;
+const height = 12;
 const nBombs_easy = 10;
 
 function setBombCounter(x, y) {
@@ -20,7 +20,7 @@ function setCounters() {
                 setBombCounter(x + 1, y - 1);
 
                 setBombCounter(x - 1, y);
-                setBombCounter(x, y);
+                // setBombCounter(x, y);
                 setBombCounter(x + 1, y);
 
                 setBombCounter(x - 1, y + 1);
@@ -40,24 +40,27 @@ function uncoverField() {
     }
 }
 
-function selectField(x, y) {
+function selectField(x, y, norender) {
     let field = getField(x, y);
-    // getField(x, y).revealed = true;
-
-    if (field && (field.hasBomb || field.number > 0))
+    if (field && (field.hasBomb || field.number > 0)) {
         field.revealed = true
-    else if (field && field.number == 0 && !field.revealed) {
+        if (field.hasBomb) {
+            gameOver();
+        }
+    } else if (field && field.number == 0 && !field.revealed) {
         field.revealed = true;
-        selectField(x - 1, y - 1);
-        selectField(x, y - 1);
-        selectField(x + 1, y - 1);
-        selectField(x - 1, y);
-        selectField(x + 1, y);
-        selectField(x - 1, y + 1);
-        selectField(x, y + 1);
-        selectField(x + 1, y + 1);
+        selectField(x - 1, y - 1, true);
+        selectField(x, y - 1, true);
+        selectField(x + 1, y - 1, true);
+        selectField(x - 1, y, true);
+        selectField(x + 1, y, true);
+        selectField(x - 1, y + 1, true);
+        selectField(x, y + 1, true);
+        selectField(x + 1, y + 1, true);
     };
-    render();
+    if (!norender) {
+        render();
+    }
 };
 
 function getField(x, y) {
@@ -110,7 +113,7 @@ function buildBoxes() {
     for (let w = 0; w < width; w++) {
         zeile = `<div>`;
         for (let h = 0; h < height; h++) {
-            str = `<div id="box_${w}${h}" class="box" onclick="selectField(${w}, ${h})"></div>`;
+            str = `<div id="box_${w}${h}" class="box" onclick="selectField(${w}, ${h}); resetTimer();"></div>`;
             zeile += str;
         };
         zeile += `</div>`;
