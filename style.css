@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main_body {
+    width: fit-content;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.info_box {
+    height: 80px;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.play_field {
+    display: flex;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.box {
+    cursor: pointer;
+    width: 94px;
+    height: 94px;
+    box-shadow: 1px 1px 1px 1px black;
+}
